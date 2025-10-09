@@ -11,6 +11,7 @@
 - **_leading-4_** → satır yüksekliğini 1rem yapar. Yani <p> içindeki “10” rakamı dikeyde ortalı görünür.
 - **_aspect-square_** → elemanın en ve boyunu eşit yapar (kare şekil). Bu sayede <p> yuvarlak bir rozet (badge) olur.
 - for dynamic classname: use **_className={``}_**, not **_className=""_**.
+- **_md_** → _min-width:_ 768px (tablet ve üzeri ekranlar)
 
 ### REACT NOTES
 
