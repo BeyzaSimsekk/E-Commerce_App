@@ -4,13 +4,17 @@ import { products } from "../assets/assets";
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
+  // Sabit veriler (tüm uygulamada erişilebilir olacak)
   const currency = "$";
   const delivery_fee = 10;
 
   const value = { products, currency, delivery_fee };
 
   return (
-    <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>
+    // Provider, value içindeki verileri tüm alt bileşenlerle paylaşır
+    <ShopContext.Provider value={value}>
+      {props.children} {/* Uygulamanın geri kalanı buraya gelir */}
+    </ShopContext.Provider>
   );
 };
 

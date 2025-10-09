@@ -1,6 +1,6 @@
 # NOTES TO MYSELF
 
-## FRONTEND
+## ---------------------------FRONTEND--------------------------
 
 ### CSS NOTES
 
@@ -16,3 +16,5 @@
 ### REACT NOTES
 
 - **_NavLink_** sayesinde hangi menü item'e tıklıyorsan onda classname'ine yeni bir class ekleniyor: _active_.
+- **_ShopContext.jsx_** → Uygulama genelinde ürünler, para birimi ve teslimat ücretini tek bir yerden yönetmek için bir global context sağlar.
+  - _ShopContextProvider_ ile sarmalanan tüm bileşenler (App dahil) bu verilere useContext(ShopContext) kullanarak erişebilir.
