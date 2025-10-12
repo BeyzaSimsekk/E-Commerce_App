@@ -15,6 +15,7 @@
 - **_inline-flex_** → Elemanı satır içi (inline) davranışta tutarken, içerideki öğeleri flexbox ile hizalamayı sağlar. Eleman satır akışını bozmaz ama içindekileri `flex` düzeninde hizalar.
   - **_sm:_** → küçük ekranlar ve üzeri (min-width: 640px)
   - **_md:_** → orta ekranlar ve üzeri (min-width: 768px)
+  - **_grid-cols-[3fr_1fr_1fr]_** → grid içinde 3 sütun oluşturur; ilk sütun geniş, diğer ikisi dar olur (3:1:1 oranında)
 
 ### REACT NOTES
 
