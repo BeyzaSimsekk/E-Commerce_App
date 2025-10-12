@@ -22,3 +22,17 @@
 - **_ShopContext.jsx_** → Uygulama genelinde ürünler, para birimi ve teslimat ücretini tek bir yerden yönetmek için bir global context sağlar.
   - _ShopContextProvider_ ile sarmalanan tüm bileşenler (App dahil) bu verilere useContext(ShopContext) kullanarak erişebilir.
 - **_useEffect_** → React’te bir bileşen render olduktan sonra çalışacak yan etkileri (side effects) tanımlamak için kullanılır.
+
+### EXTRA NOTES
+
+```
+<div className="overflow-hidden">
+  <img
+    className="hover:scale-110 transition ease-in-out"
+    src={image[0]}
+    alt="product item"
+  />
+</div>
+```
+
+- yukarıdaki kodda className'i _overflow-hidden_ olan `div` sayesinde `img`teki hover efekti arka plan transparentmiş gibi bir etki yaptı.
