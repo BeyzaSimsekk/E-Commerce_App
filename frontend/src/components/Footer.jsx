@@ -45,7 +45,7 @@ const Footer = () => {
       </div>
       {/* Footer Copyright */}
       <div>
-        <hr />
+        <hr className="h-[2px] bg-gray-300 border-none" />
         <p className="py-5 text-sm text-center">
           Copyright 2025@ shopix.com - All Rights Reserved.
         </p>
