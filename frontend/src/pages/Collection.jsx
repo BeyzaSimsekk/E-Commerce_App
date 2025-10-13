@@ -8,6 +8,10 @@ const Collection = () => {
   const { products } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
   const [filterProducts, setFilterProducts] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [subCategory, setSubCategory] = useState([]);
+
+  // logic te kaldım: ***********2.10.30****************
 
   useEffect(() => {
     setFilterProducts(products);
@@ -33,18 +37,33 @@ const Collection = () => {
         <div
           className={`border rounded-xl border-gray-300 pl-5 py-3 mt-6 ${
             showFilter ? "" : "hidden"
-          } sm:block`}
+          } sm:block shadow-md`}
         >
           <p className="mb-3 text-sm font-medium">CATEGORIES</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Men"} /> Men
+              <input
+                className="w-3 accent-[#C586A5]"
+                type="checkbox"
+                value={"Men"}
+              />{" "}
+              Men
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Women"} /> Women
+              <input
+                className="w-3 accent-[#C586A5]"
+                type="checkbox"
+                value={"Women"}
+              />{" "}
+              Women
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Kids"} /> Kids
+              <input
+                className="w-3 accent-[#C586A5]"
+                type="checkbox"
+                value={"Kids"}
+              />{" "}
+              Kids
             </p>
           </div>
         </div>
@@ -52,20 +71,32 @@ const Collection = () => {
         <div
           className={`border rounded-xl border-gray-300 pl-5 py-3 my-5 ${
             showFilter ? "" : "hidden"
-          } sm:block`}
+          } sm:block shadow-md`}
         >
           <p className="mb-3 text-sm font-medium">TYPE</p>
           <div className="flex flex-col gap-2 text-sm font-light text-gray-700">
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Topwear"} />
+              <input
+                className="w-3 accent-[#C586A5]"
+                type="checkbox"
+                value={"Topwear"}
+              />
               Topwear
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Bottomwear"} />
+              <input
+                className="w-3 accent-[#C586A5]"
+                type="checkbox"
+                value={"Bottomwear"}
+              />
               Bottomwear
             </p>
             <p className="flex gap-2">
-              <input className="w-3" type="checkbox" value={"Winterwear"} />
+              <input
+                className="w-3 accent-[#C586A5]"
+                type="checkbox"
+                value={"Winterwear"}
+              />
               Winterwear
             </p>
           </div>
@@ -76,10 +107,16 @@ const Collection = () => {
         {/* Product Sort */}
         <div className="flex justify-between text-base sm:text-2xl mb-4">
           <Title text1={"ALL"} text2={"COLLECTIONS"} />
-          <select className="flex-row border-2 rounded-xl border-gray-300 text-sm gap-1 px-2">
-            <option value="relavent">Sort by Relavent</option>
-            <option value="low-high">Sort by: Low to High</option>
-            <option value="high-low">Sort by: High to Low</option>
+          <select className="flex-row border-2 rounded-xl border-gray-300 text-sm gap-1 px-2 focus:outline-none focus:border-[#C586A5] shadow-md">
+            <option value="relavent" className="hover:bg-[#C586A5]">
+              Sort by Relavent
+            </option>
+            <option value="low-high" className="hover:bg-[#C586A5]">
+              Sort by: Low to High
+            </option>
+            <option value="high-low" className="hover:bg-[#C586A5]">
+              Sort by: High to Low
+            </option>
           </select>
         </div>
         {/* Map Products */}

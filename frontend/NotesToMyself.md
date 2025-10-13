@@ -20,6 +20,7 @@
   - **`flex` & `flex-1` farkı:**
     - **_flex_** → container olur (çocukları flexbox düzenine sokar)
     - **_flex-1_** → eleman esnek şekilde büyür/küçülür, kalan alanı kaplar.
+  - **_accent-[color]_** → Tailwind’de default checkbox mavidir. Bunu custom color yapmak için kullanılabilir.
 
 ### REACT NOTES
 
