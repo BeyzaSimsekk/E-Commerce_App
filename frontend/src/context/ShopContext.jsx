@@ -1,6 +1,8 @@
 import { createContext } from "react";
 import { products } from "../assets/assets";
 
+// SEARCH LOGIC'TE KALDIM*************2.30.40*************
+
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {

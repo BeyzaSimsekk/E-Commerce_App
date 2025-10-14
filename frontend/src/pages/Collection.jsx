@@ -10,6 +10,7 @@ const Collection = () => {
   const [filterProducts, setFilterProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
+  const [sortType, setSortType] = useState("relavent");
 
   /**toggleCategory: checkbox etkileşiminde category state'ini dinamik olarak günceller
    * e.target.value → tıklanan checkbox'ın value değerini alır
@@ -53,9 +54,32 @@ const Collection = () => {
     setFilterProducts(productsCopy);
   };
 
+  const sortProduct = () => {
+    // we need to have a copy of the filtered products
+    let fpCopy = filterProducts.slice();
+
+    switch (sortType) {
+      case "low-high":
+        setFilterProducts(fpCopy.sort((a, b) => a.price - b.price));
+        break;
+
+      case "high-low":
+        setFilterProducts(fpCopy.sort((a, b) => b.price - a.price));
+        break;
+
+      default:
+        applyFilter();
+        break;
+    }
+  };
+
   useEffect(() => {
     applyFilter();
   }, [category, subCategory]); // whenever category or subCategory changes, this function will be executed
+
+  useEffect(() => {
+    sortProduct();
+  }, [sortType]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t border-gray-300 ">
@@ -153,7 +177,10 @@ const Collection = () => {
         {/* Product Sort */}
         <div className="flex justify-between text-base sm:text-2xl mb-4">
           <Title text1={"ALL"} text2={"COLLECTIONS"} />
-          <select className="flex-row border-2 rounded-xl border-gray-300 text-sm gap-1 px-2 focus:outline-none focus:border-[#C586A5] shadow-md">
+          <select
+            onChange={(e) => setSortType(e.target.value)}
+            className="flex-row border-2 rounded-xl border-gray-300 text-sm gap-1 px-2 focus:outline-none focus:border-[#C586A5] shadow-md"
+          >
             <option value="relavent" className="hover:bg-[#C586A5]">
               Sort by Relavent
             </option>
