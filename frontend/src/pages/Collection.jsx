@@ -11,11 +11,37 @@ const Collection = () => {
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
 
-  // logic te kaldım: ***********2.10.30****************
+  /**toggleCategory: checkbox etkileşiminde category state'ini dinamik olarak günceller
+   * e.target.value → tıklanan checkbox'ın value değerini alır
+   * category.includes(...) → bu value'nun category dizisinde olup olmadığını kontrol eder
+   * Eğer zaten mevcutsa, filtreleme işlemi ile o elemanı diziden çıkarır
+   * * filter() → her elemanı tek tek kontrol eder, koşulu sağlamayanları döndürür
+   * Eğer mevcut değilse, spread operator (...) kullanılarak önceki dizinin kopyası oluşturulur
+   * * ardından yeni value sona eklenir → immutable (değiştirilemez) güncelleme yapılır
+   */
+  const toggleCategory = (e) => {
+    if (category.includes(e.target.value)) {
+      setCategory((prev) => prev.filter((item) => item !== e.target.value));
+    } else {
+      setCategory((prev) => [...prev, e.target.value]);
+    }
+  };
+
+  const toggleSubCategory = (e) => {
+    if (subCategory.includes(e.target.value)) {
+      setSubCategory((prev) => prev.filter((item) => item !== e.target.value));
+    } else {
+      setSubCategory((prev) => [...prev, e.target.value]);
+    }
+  };
 
   useEffect(() => {
     setFilterProducts(products);
   }, []);
+
+  useEffect(() => {
+    console.log(subCategory);
+  }, [subCategory]);
 
   return (
     <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t border-gray-300 ">
@@ -46,6 +72,7 @@ const Collection = () => {
                 className="w-3 accent-[#C586A5]"
                 type="checkbox"
                 value={"Men"}
+                onChange={toggleCategory}
               />{" "}
               Men
             </p>
@@ -54,6 +81,7 @@ const Collection = () => {
                 className="w-3 accent-[#C586A5]"
                 type="checkbox"
                 value={"Women"}
+                onChange={toggleCategory}
               />{" "}
               Women
             </p>
@@ -62,6 +90,7 @@ const Collection = () => {
                 className="w-3 accent-[#C586A5]"
                 type="checkbox"
                 value={"Kids"}
+                onChange={toggleCategory}
               />{" "}
               Kids
             </p>
@@ -80,6 +109,7 @@ const Collection = () => {
                 className="w-3 accent-[#C586A5]"
                 type="checkbox"
                 value={"Topwear"}
+                onChange={toggleSubCategory}
               />
               Topwear
             </p>
@@ -88,6 +118,7 @@ const Collection = () => {
                 className="w-3 accent-[#C586A5]"
                 type="checkbox"
                 value={"Bottomwear"}
+                onChange={toggleSubCategory}
               />
               Bottomwear
             </p>
@@ -96,6 +127,7 @@ const Collection = () => {
                 className="w-3 accent-[#C586A5]"
                 type="checkbox"
                 value={"Winterwear"}
+                onChange={toggleSubCategory}
               />
               Winterwear
             </p>
