@@ -106,7 +106,37 @@ const Product = () => {
           </div>
         </div>
       </div>
-      {/*  */}
+      {/* ********************* Description & Reviews ********************* */}
+      <div className="mt-20">
+        {/* Tabs */}
+        <div className="flex ">
+          <b className="border rounded-t-2xl border-gray-300 px-5 py-3 text-md">
+            Description
+          </b>
+          <p className="border rounded-t-2xl border-gray-300 px-5 py-3 text-md">
+            Reviews (122)
+          </p>
+        </div>
+        <div className="flex flex-col rounded-b-2xl rounded-r-2xl gap-4 border border-gray-300 px-6 py-6 text-sm text-gray-500 shadow-md">
+          <p>
+            Redefine your wardrobe with effortless elegance. Explore curated
+            fashion pieces designed to make every day feel special. Quality
+            fabrics, modern silhouettes, and exclusive designs — all in one
+            place. Discover a world of style, comfort, and quality. From
+            timeless classics to the latest trends, our collection brings you
+            everything you love — crafted with care and delivered straight to
+            your door. Shop smarter, live better.
+          </p>
+          <p>
+            Experience shopping like never before. Each piece tells a story of
+            craftsmanship, passion, and detail. Elevate your lifestyle with
+            premium products made to inspire confidence. Innovation meets
+            everyday life. Explore smart gadgets, modern accessories, and
+            next-generation tech that make life easier, faster, and more fun.
+            Upgrade your world — one click at a time.
+          </p>
+        </div>
+      </div>
     </div>
   ) : (
     <div className="flex items-center align-middle justify-center">
