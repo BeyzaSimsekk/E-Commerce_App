@@ -21,6 +21,7 @@
     - **_flex_** → container olur (çocukları flexbox düzenine sokar)
     - **_flex-1_** → eleman esnek şekilde büyür/küçülür, kalan alanı kaplar.
   - **_accent-[color]_** → Tailwind’de default checkbox mavidir. Bunu custom color yapmak için kullanılabilir.
+  - **_bg-inherit_** → Elementin arka plan rengini üst elemandan miras almasını sağlar (background-color: inherit).
 
 ### REACT NOTES
 
