@@ -24,6 +24,7 @@
 - **_bg-inherit_** → Elementin arka plan rengini üst elemandan miras almasını sağlar (background-color: inherit).
 - **_flex-col-reverse_** → elemanları alttan üste dizer. Yani sıralamayı ters çevirir ama HTML’deki kod sırası değişmez — sadece ekrandaki görsel sıralama ters olur
 - **_flex-shrink-0_** → TailwindCSS’te bir elemanın küçülmesini (shrink) engeller.
+- **_::-webkit-scrollbar_** → Bu, CSS’te özel bir “pseudo-element”tir (yani sahte eleman). Sadece WebKit tabanlı tarayıcılar için geçerlidir.(Bunlar: Chrome, Safari, Edge’in yeni sürümleri, Opera vs.)
 
 ### REACT NOTES
 
@@ -49,4 +50,58 @@
 </div>
 ```
 
-- yukarıdaki kodda className'i _overflow-hidden_ olan `div` sayesinde `img`teki hover efekti arka plan transparentmiş gibi bir etki yaptı.
+yukarıdaki kodda className'i _overflow-hidden_ olan `div` sayesinde `img`teki hover efekti arka plan transparentmiş gibi bir etki yaptı.
+
+---
+
+```
+  <div className="flex items-center gap-1 mt-2">
+    {/* Static Stars */}
+    <img src={assets.star_icon} alt="" className="w-3.5" />
+    <img src={assets.star_icon} alt="" className="w-3.5" />
+    <img src={assets.star_icon} alt="" className="w-3.5" />
+    <img src={assets.star_icon} alt="" className="w-3.5" />
+    <img src={assets.star_dull_icon} alt="" className="w-3.5" />
+
+    <p className="pl-2">(122)</p>
+  </div>
+```
+
+**_bu kod kısmının static değil de dynamic olmasını isteseydik:_**
+Dinamik yıldız gösterimi için:
+
+- Ortalama puanı (örneğin 4.2) alın.
+- 5 yıldızlık bir sistemde, her yıldız için dolu, yarım veya boş ikon gösterin.
+- Yorum sayısını da dinamik olarak gösterin.
+- Örnek kod:
+
+  ```
+    const rating = 4.2; // API'den veya props'tan gelir
+    const reviewCount = 122; // API'den veya props'tan gelir
+
+  const stars = [];
+  for (let i = 1; i <= 5; i++) {
+  if (rating >= i) {
+  stars.push(<img src={s.star_full_icon} alt="" className="w-3.5" key={i} />);
+  } else if (rating > i - 1) {
+  stars.push(<img src={s.star_half_icon} alt="" className="w-3.5" key={i} />);
+  } else {
+  stars.push(<img src={s.star_dull_icon} alt="" className="w-3.5" key={i} />);
+  }
+  }
+
+  return (
+    <div className="flex items-center">
+      {stars}
+      <p className="pl-2">({reviewCount})</p>
+    </div>
+  );
+  ```
+
+Bu şekilde yıldızlar ve yorum sayısı dinamik olarak güncellenir. Yıldız ikonlarını (dolu, yarım, boş) assetlerinizde bulundurmanız gerekir.
+
+---
+
+**“WebKit” ne?**
+WebKit, tarayıcıların web sayfalarını render (çizim) etmek için kullandığı bir render motorudur.
+Safari ve Chromium tabanlı tarayıcıların temelinde bulunur.
