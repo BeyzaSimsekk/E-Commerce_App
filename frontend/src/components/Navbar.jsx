@@ -1,11 +1,25 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets.js";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext.jsx";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const { setShowSearch } = useContext(ShopContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSearchClick = () => {
+    if (!location.pathname.includes("collection")) {
+      // Eğer kullanıcı collection sayfasında değilse, önce oraya yönlendir
+      navigate("/collection");
+      // Küçük bir gecikmeden sonra search bar'ı göster
+      setTimeout(() => setShowSearch(true), 100);
+    } else {
+      // Zaten collection sayfasındaysa direkt aç
+      setShowSearch(true);
+    }
+  };
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
@@ -34,7 +48,7 @@ const Navbar = () => {
       <div className="flex items-center gap-6">
         {/* Search Icon */}
         <img
-          onClick={() => setShowSearch(true)}
+          onClick={handleSearchClick}
           src={assets.search_icon}
           className="w-5 cursor-pointer"
           alt="search icon"
