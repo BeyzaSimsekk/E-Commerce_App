@@ -1,6 +1,11 @@
 import { createContext, use, useEffect, useState } from "react";
 import { products } from "../assets/assets";
 import { toast } from "react-toastify";
+import {
+  FaCheckCircle,
+  FaExclamationCircle,
+  FaInfoCircle,
+} from "react-icons/fa";
 
 export const ShopContext = createContext();
 
@@ -14,9 +19,19 @@ const ShopContextProvider = (props) => {
   const [cartAnimate, setCartAnimate] = useState(false);
 
   // Sepete ürün ekleme işlevi
-  const addToCart = (itemId, size) => {
+  const addToCart = async (itemId, size) => {
     if (!size) {
-      toast.error("Please select a size before adding to cart.");
+      toast.error("Please select a size before adding to cart.", {
+        position: "bottom-right",
+        icon: (
+          <FaExclamationCircle style={{ color: "#8B3E72", fontSize: "20px" }} />
+        ),
+        style: {
+          color: "#8B3E72",
+          fontWeight: "bold",
+          fontSize: "14px",
+        },
+      });
       return;
     }
 
@@ -39,7 +54,15 @@ const ShopContextProvider = (props) => {
     setCartAnimate(true);
     setTimeout(() => setCartAnimate(false), 400); // animasyon süresi (0.4s)
 
-    toast.success("Product added to cart!"); // Başarı bildirimi
+    toast.success("Product added to cart!", {
+      position: "bottom-right",
+      icon: <FaCheckCircle style={{ color: "#8B3E72", fontSize: "20px" }} />,
+      style: {
+        color: "#8B3E72",
+        fontWeight: "bold",
+        fontSize: "14px",
+      },
+    }); // Başarı bildirimi
   };
 
   const getCartCount = () => {
@@ -59,6 +82,17 @@ const ShopContextProvider = (props) => {
     return totalCount;
   };
 
+  const updateQuantity = async (itemId, size, quantity) => {
+    let cartData = structuredClone(cartItems);
+
+    cartData[itemId][size] = quantity;
+    setCartItems(cartData);
+
+    // Sepete ekleme animasyonunu tetikle
+    setCartAnimate(true);
+    setTimeout(() => setCartAnimate(false), 400); // animasyon süresi (0.4s)
+  };
+
   const value = {
     products,
     currency,
@@ -71,6 +105,7 @@ const ShopContextProvider = (props) => {
     addToCart,
     getCartCount,
     cartAnimate,
+    updateQuantity,
   };
 
   return (
