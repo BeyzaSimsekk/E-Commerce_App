@@ -1,5 +1,6 @@
 import { createContext, use, useEffect, useState } from "react";
 import { products } from "../assets/assets";
+import { toast } from "react-toastify";
 
 export const ShopContext = createContext();
 
@@ -13,6 +14,11 @@ const ShopContextProvider = (props) => {
 
   // Sepete ürün ekleme işlevi
   const addToCart = (itemId, size) => {
+    if (!size) {
+      toast.error("Please select a size before adding to cart.");
+      return;
+    }
+
     let cartData = structuredClone(cartItems); // Mevcut sepet verilerini klonla
 
     if (cartData[itemId]) {
