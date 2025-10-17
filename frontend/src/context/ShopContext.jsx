@@ -38,6 +38,8 @@ const ShopContextProvider = (props) => {
     // Sepete ekleme animasyonunu tetikle
     setCartAnimate(true);
     setTimeout(() => setCartAnimate(false), 400); // animasyon süresi (0.4s)
+
+    toast.success("Product added to cart!"); // Başarı bildirimi
   };
 
   const getCartCount = () => {
