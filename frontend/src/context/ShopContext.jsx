@@ -11,6 +11,7 @@ const ShopContextProvider = (props) => {
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false); // hiding/showing search bar
   const [cartItems, setCartItems] = useState({});
+  const [cartAnimate, setCartAnimate] = useState(false);
 
   // Sepete ürün ekleme işlevi
   const addToCart = (itemId, size) => {
@@ -33,11 +34,28 @@ const ShopContextProvider = (props) => {
     }
 
     setCartItems(cartData); // Sepet verilerini güncelle
+
+    // Sepete ekleme animasyonunu tetikle
+    setCartAnimate(true);
+    setTimeout(() => setCartAnimate(false), 400); // animasyon süresi (0.4s)
   };
 
-  useEffect(() => {
-    console.log(cartItems);
-  }, [cartItems]);
+  const getCartCount = () => {
+    let totalCount = 0;
+
+    for (const items in cartItems) {
+      for (const item in cartItems[items]) {
+        try {
+          if (cartItems[items][item] > 0) {
+            totalCount += cartItems[items][item];
+          }
+        } catch (error) {
+          console.error("Error calculating cart count:", error);
+        }
+      }
+    }
+    return totalCount;
+  };
 
   const value = {
     products,
@@ -49,6 +67,8 @@ const ShopContextProvider = (props) => {
     setShowSearch,
     cartItems,
     addToCart,
+    getCartCount,
+    cartAnimate,
   };
 
   return (

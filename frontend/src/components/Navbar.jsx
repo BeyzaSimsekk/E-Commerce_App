@@ -5,7 +5,7 @@ import { ShopContext } from "../context/ShopContext.jsx";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const { setShowSearch } = useContext(ShopContext);
+  const { setShowSearch, getCartCount, cartAnimate } = useContext(ShopContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -75,8 +75,12 @@ const Navbar = () => {
         {/* Cart Icon*/}
         <Link to="/cart" className="relative">
           <img src={assets.cart_icon} className="w-5 min-w-5" alt="cart" />
-          <p className="absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-[#C586A5] text-black aspect-square rounded-full text-[8px]">
-            10
+          <p
+            className={`absolute right-[-5px] bottom-[-5px] w-4 font-semibold text-center leading-4 bg-[#C586A5] text-black aspect-square rounded-full text-[8px] transition-transform duration-300 ${
+              cartAnimate ? "scale-125" : "scale-100"
+            }`}
+          >
+            {getCartCount()}
           </p>
         </Link>
 
