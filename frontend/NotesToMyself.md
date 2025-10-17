@@ -37,6 +37,10 @@
     Yani component’in DOM’a hiçbir şey çizmemesini ama yine de geçerli bir React element olarak davranmasını sağlar.
   - **_return;_** → Bu, fonksiyonu hiçbir şey döndürmeden bitirmek anlamına gelir.
     Yani React açısından component’in undefined döndürmesi demek.
+- **_slice()_** → sığ (shallow) bir kopya oluşturur. Yani yalnızca ilk seviye elemanları kopyalar.
+  Eğer products dizisinin içinde nesneler varsa (örneğin { id: 1, name: 'T-shirt' }), bu nesnelerin kendisini değil, referansını kopyalar.
+- **_structuredClone()_** → derin (deep) bir kopya oluşturur. Bu, dizinin veya nesnenin iç içe geçmiş tüm seviyelerini kopyalar.
+  Yani artık cartData ve cartItems tamamen bağımsız iki veri haline gelir.
 
 ### EXTRA NOTES
 

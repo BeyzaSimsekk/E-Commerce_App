@@ -1,4 +1,4 @@
-import { createContext, use, useState } from "react";
+import { createContext, use, useEffect, useState } from "react";
 import { products } from "../assets/assets";
 
 export const ShopContext = createContext();
@@ -9,6 +9,29 @@ const ShopContextProvider = (props) => {
   const delivery_fee = 10;
   const [search, setSearch] = useState("");
   const [showSearch, setShowSearch] = useState(false); // hiding/showing search bar
+  const [cartItems, setCartItems] = useState({});
+
+  // Sepete ürün ekleme işlevi
+  const addToCart = (itemId, size) => {
+    let cartData = structuredClone(cartItems); // Mevcut sepet verilerini klonla
+
+    if (cartData[itemId]) {
+      if (cartData[itemId][size]) {
+        cartData[itemId][size] += 1; // Aynı ürün ve beden varsa miktarı artır
+      } else {
+        cartData[itemId][size] = 1; // Aynı ürün farklı beden ekleniyor
+      }
+    } else {
+      cartData[itemId] = {};
+      cartData[itemId][size] = 1; // Yeni ürün ekleniyor
+    }
+
+    setCartItems(cartData); // Sepet verilerini güncelle
+  };
+
+  useEffect(() => {
+    console.log(cartItems);
+  }, [cartItems]);
 
   const value = {
     products,
@@ -18,6 +41,8 @@ const ShopContextProvider = (props) => {
     setSearch,
     showSearch,
     setShowSearch,
+    cartItems,
+    addToCart,
   };
 
   return (
