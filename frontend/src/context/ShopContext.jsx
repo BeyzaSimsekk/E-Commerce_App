@@ -93,6 +93,25 @@ const ShopContextProvider = (props) => {
     setTimeout(() => setCartAnimate(false), 400); // animasyon süresi (0.4s)
   };
 
+  const getCartAmount = async () => {
+    let totalAmount = 0;
+
+    for (const items in cartItems) {
+      let itemInfo = products.find((product) => product._id === items);
+
+      for (const item in cartItems[items]) {
+        try {
+          if (cartItems[items][item] > 0) {
+            totalAmount += itemInfo.price * cartItems[items][item]; // fiyat * miktar
+          }
+        } catch (error) {
+          console.error("Error calculating cart amount:", error);
+        }
+      }
+    }
+    return totalAmount;
+  };
+
   const value = {
     products,
     currency,
@@ -106,6 +125,7 @@ const ShopContextProvider = (props) => {
     getCartCount,
     cartAnimate,
     updateQuantity,
+    getCartAmount,
   };
 
   return (
