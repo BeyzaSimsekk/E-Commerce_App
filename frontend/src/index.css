@@ -24,6 +24,10 @@ a.active hr {
   @apply bg-fuchsia-950 text-fuchsia-200 mt-8 px-8 py-3 text-sm active:bg-fuchsia-900 cursor-pointer rounded-xl hover:scale-105 transition ease-in-out;
 }
 
+.custom-border {
+  @apply w-full sm:w-[450px] border p-6 rounded-3xl border-[#C586A5] shadow-md shadow-[#dd9fbe79];
+}
+
 @media (max-width: 640px) {
   a.active {
     background-color: black;
