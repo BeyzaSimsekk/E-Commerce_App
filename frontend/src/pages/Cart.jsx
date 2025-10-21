@@ -6,10 +6,10 @@ import { assets } from "../assets/assets";
 import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
-  const { products, currency, cartItems, updateQuantity } =
+  const { products, currency, cartItems, updateQuantity, navigate } =
     useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
-  const navigate = useNavigate();
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     const tempData = [];
@@ -46,7 +46,8 @@ const Cart = () => {
           );
           return (
             <div
-              onClick={() => navigate(`/product/${productData._id}`)}
+              // BU ONCLICK SONRADAN GÜNCELLENEBİLİR
+              onClick={() => navigateTo(`/product/${productData._id}`)}
               key={index}
               className="py-3 px-3 border-t border-b rounded-3xl border-[#C586A5] text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4 mt-4 shadow-md shadow-[#dd9fbe79] cursor-pointer"
             >
@@ -104,7 +105,12 @@ const Cart = () => {
           <CartTotal />
           {/* Cart Buttons */}
           <div className="w-full text-end">
-            <button className="button1">PROCEED TO CHECKOUT</button>
+            <button
+              onClick={() => navigate("/place-order")}
+              className="button1"
+            >
+              PROCEED TO CHECKOUT
+            </button>
           </div>
         </div>
       </div>

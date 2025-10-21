@@ -1,11 +1,8 @@
 import { createContext, use, useEffect, useState } from "react";
 import { products } from "../assets/assets";
 import { toast } from "react-toastify";
-import {
-  FaCheckCircle,
-  FaExclamationCircle,
-  FaInfoCircle,
-} from "react-icons/fa";
+import { FaCheckCircle, FaExclamationCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export const ShopContext = createContext();
 
@@ -17,6 +14,7 @@ const ShopContextProvider = (props) => {
   const [showSearch, setShowSearch] = useState(false); // hiding/showing search bar
   const [cartItems, setCartItems] = useState({});
   const [cartAnimate, setCartAnimate] = useState(false);
+  const navigate = useNavigate();
 
   // Sepete ürün ekleme işlevi
   const addToCart = async (itemId, size) => {
@@ -131,6 +129,7 @@ const ShopContextProvider = (props) => {
     cartAnimate,
     updateQuantity,
     getCartAmount,
+    navigate,
   };
 
   return (
