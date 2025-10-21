@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
 
 @import "tailwindcss";
 
 a.active hr {
-    display: block;
+  display: block;
 }
 
-*{
-    font-family: "Outfit";
+* {
+  font-family: "Outfit";
 }
 
 .prata-regular {
@@ -17,12 +17,16 @@ a.active hr {
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
+}
+
+.button1 {
+  @apply bg-fuchsia-950 text-fuchsia-200 mt-8 px-8 py-3 text-sm active:bg-fuchsia-900 cursor-pointer rounded-xl hover:scale-105 transition ease-in-out;
 }
 
 @media (max-width: 640px) {
-    a.active {
-        background-color: black;
-        color: white;
-    }
+  a.active {
+    background-color: black;
+    color: white;
+  }
 }

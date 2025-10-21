@@ -1,12 +1,15 @@
 import React, { use, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
+import CartTotal from "../components/CartTotal";
 
 const Cart = () => {
   const { products, currency, cartItems, updateQuantity } =
     useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const tempData = [];
@@ -35,7 +38,7 @@ const Cart = () => {
       <div className="text-2xl mb-3">
         <Title text1={"YOUR"} text2={"CART"} />
       </div>
-      {/* Cart Items */}
+      {/* ----------------- Cart Items ----------------- */}
       <div>
         {cartData.map((item, index) => {
           const productData = products.find(
@@ -43,6 +46,7 @@ const Cart = () => {
           );
           return (
             <div
+              onClick={() => navigate(`/product/${productData._id}`)}
               key={index}
               className="py-3 px-3 border-t border-b rounded-3xl border-[#C586A5] text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4 mt-4 shadow-md shadow-[#dd9fbe79] cursor-pointer"
             >
@@ -93,6 +97,16 @@ const Cart = () => {
             </div>
           );
         })}
+      </div>
+      {/* ----------------- Cart Total ----------------- */}
+      <div className="flex justify-end my-20">
+        <div className="w-full sm:w-[450px] border p-6 rounded-3xl border-[#C586A5] shadow-md shadow-[#dd9fbe79]">
+          <CartTotal />
+          {/* Cart Buttons */}
+          <div className="w-full text-end">
+            <button className="button1">PROCEED TO CHECKOUT</button>
+          </div>
+        </div>
       </div>
     </div>
   );

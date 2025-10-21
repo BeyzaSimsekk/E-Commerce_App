@@ -93,7 +93,12 @@ const ShopContextProvider = (props) => {
     setTimeout(() => setCartAnimate(false), 400); // animasyon süresi (0.4s)
   };
 
-  const getCartAmount = async () => {
+  /**bu getCartAmount fonksiyonuna async eklersek:
+   * Uncaught Error: An unknown Component is an async Client Component. Only Server Components can be async at the moment. This error is often caused by accidentally adding `'use client'` to a module that was originally written for the server.
+   * böyle bir hata alıyoruz. Bu yüzden async kaldırdık.
+   * bu hatanın oluşma sebebi: React'ın Server Components ve Client Components arasındaki ayrımı yönetme şekliyle ilgilidir.
+   */
+  const getCartAmount = () => {
     let totalAmount = 0;
 
     for (const items in cartItems) {
