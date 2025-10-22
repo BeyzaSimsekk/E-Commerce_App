@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
+import NewsletterBox from "../components/NewsletterBox";
 
 const About = () => {
   return (
@@ -17,7 +18,7 @@ const About = () => {
       {/* Content */}
       <div className="my-10 flex flex-col md:flex-row gap-16">
         <img
-          className="w-full md:max-w-[450px] rounded-2xl shadow-md"
+          className="w-full md:max-w-[450px] rounded-2xl shadow-md hover:scale-102 transition ease-in-out duration-300"
           src={assets.about_img}
           alt="about image"
         />
@@ -54,7 +55,41 @@ const About = () => {
       <div className="text-xl py-4">
         <Title text1={"WHY"} text2={"CHOOSE US?"} />
       </div>
-      <div className="flex flex-col md:flex-row text-sm mb-20"></div>
+      {/* Cards */}
+      <div className="flex flex-col md:flex-row gap-2 text-sm mb-20 text-center cursor-default">
+        {/* Quality Assurance */}
+        <div className="custom-border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5 hover:scale-102 transition ease-in-out duration-300">
+          <b className="text-base text-[#571d43]">Quality Assurance</b>
+          <p className="text-gray-600">
+            From material selection to final stitching, we ensure that each item
+            meets our highest standards of durability, comfort, and design
+            integrity.
+          </p>
+        </div>
+        {/* Convenience */}
+        <div className="custom-border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5 hover:scale-102 transition ease-in-out duration-300">
+          <b className="text-base text-[#571d43]">Convenience</b>
+          <p className="text-gray-600">
+            From easy navigation to quick checkout and reliable delivery,
+            everything is designed to save you time and bring comfort to your
+            day.
+          </p>
+        </div>
+        {/* Exceptional Customer Service */}
+        <div className="custom-border px-10 md:px-16 py-8 sm:py-20 flex flex-col gap-5 hover:scale-102 transition ease-in-out duration-300">
+          <b className="text-base text-[#571d43]">
+            Exceptional Customer Service
+          </b>
+          <p className="text-gray-600">
+            Our team is dedicated to making every experience smooth and
+            personal. Whether you have a question, need styling advice, or
+            simply seek support, we are always here to listen, assist, and
+            ensure your satisfaction.
+          </p>
+        </div>
+      </div>
+      {/* NewsLetterBox */}
+      <NewsletterBox />
     </motion.div>
   );
 };
