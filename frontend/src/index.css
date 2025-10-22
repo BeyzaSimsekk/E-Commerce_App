@@ -28,8 +28,16 @@ a.active hr {
   @apply font-medium bg-fuchsia-200 text-fuchsia-950 mt-8 px-8 py-3 text-sm hover:bg-fuchsia-300 active:bg-fuchsia-400 cursor-pointer rounded-2xl hover:scale-105 transition ease-in-out shadow-md;
 }
 
+.button3 {
+  @apply font-semibold bg-fuchsia-200 text-fuchsia-950 mt-2 px-12 py-3 text-sm hover:bg-fuchsia-300 active:bg-fuchsia-400 cursor-pointer rounded hover:scale-105 transition ease-in-out shadow-md;
+}
+
 .custom-border {
   @apply w-full sm:w-[450px] border p-6 rounded-3xl border-[#C586A5] shadow-md shadow-[#dd9fbe79];
+}
+
+.input-border {
+  @apply border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full hover:scale-101 transition ease-in-out duration-300;
 }
 
 @media (max-width: 640px) {

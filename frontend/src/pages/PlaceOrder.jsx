@@ -20,60 +20,40 @@ const PlaceOrder = () => {
           {/* Name */}
           <div className="flex gap-3">
             <input
-              className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
+              className="input-border"
               type="text"
               placeholder="First Name"
             />
             <input
-              className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
+              className="input-border"
               type="text"
               placeholder="Last Name"
             />
           </div>
           {/* Email */}
           <input
-            className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
+            className="input-border"
             type="email"
             placeholder="Email Address"
           />
           {/* Address */}
-          <input
-            className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
-            type="text"
-            placeholder="Address"
-          />
+          <input className="input-border" type="text" placeholder="Address" />
           {/* City and State */}
           <div className="flex gap-3">
-            <input
-              className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
-              type="text"
-              placeholder="City"
-            />
-            <input
-              className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
-              type="text"
-              placeholder="State"
-            />
+            <input className="input-border" type="text" placeholder="City" />
+            <input className="input-border" type="text" placeholder="State" />
           </div>
           {/* Zipcode and Country */}
           <div className="flex gap-3">
             <input
-              className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
+              className="input-border"
               type="number"
               placeholder="Zipcode"
             />
-            <input
-              className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
-              type="text"
-              placeholder="Country"
-            />
+            <input className="input-border" type="text" placeholder="Country" />
           </div>
           {/* Phone Number */}
-          <input
-            className="border border-fuchsia-300 focus:outline-none focus:border-2 focus:border-fuchsia-700 rounded py-1.5 px-3.5 w-full "
-            type="number"
-            placeholder="Phone"
-          />
+          <input className="input-border" type="number" placeholder="Phone" />
         </div>
       </div>
       {/* ------------- Right Side ------------- */}
