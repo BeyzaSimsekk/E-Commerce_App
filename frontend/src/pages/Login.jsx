@@ -4,6 +4,11 @@ import { motion } from "framer-motion";
 const Login = () => {
   const [currentState, setCurrentState] = useState("Sign Up");
 
+  // Form doldurulup gönderildiğinde çalışacak fonksiyon (sayfa yenilenmesini engellemek için)
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+  };
+
   return (
     <motion.div
       className="overflow-hidden flex flex-col p-8 bg-gray-700 rounded-2xl  shadow-lg shadow-[#7c4760] min-h-[80vh] justify-center"
@@ -11,7 +16,10 @@ const Login = () => {
       animate={{ opacity: 1, y: 0 }} // görünür hale gelir ve yerine kayar
       transition={{ duration: 0.6, ease: "easeOut" }} // animasyon hızı ve tipi
     >
-      <form className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-6  text-gray-200">
+      <form
+        onSubmit={onSubmitHandler}
+        className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-6  text-gray-200"
+      >
         {/* Title */}
         <div className="inline-flex items-center gap-2 mb-2 mt-4">
           <p className="prata-regular text-3xl cursor-default text-shadow-lg text-shadow-[#3e2130]">
