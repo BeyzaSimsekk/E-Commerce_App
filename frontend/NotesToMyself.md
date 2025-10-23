@@ -126,3 +126,5 @@ Safari ve Chromium tabanlı tarayıcıların temelinde bulunur.
 - **_stripe_**: to setup online payment integration
 - **_validator_**: to check the data that is coming from the user is valid or not.
 - **_bcrypt_**: to encrypt the user's password and store in the database
+
+- `"type": "module",`: to enable ES6 module support ("import statements")
