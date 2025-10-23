@@ -29,7 +29,7 @@ a.active hr {
 }
 
 .button3 {
-  @apply font-semibold bg-fuchsia-200 text-fuchsia-950 mt-2 px-12 py-3 text-sm hover:bg-fuchsia-300 active:bg-fuchsia-400 cursor-pointer rounded hover:scale-105 transition ease-in-out shadow-md;
+  @apply font-semibold bg-fuchsia-200 text-fuchsia-950 mt-2 px-12 py-3 text-sm hover:bg-fuchsia-300 active:bg-fuchsia-400 cursor-pointer rounded hover:scale-105 transition-all duration-400 ease-in-out shadow-md;
 }
 
 .custom-border {
