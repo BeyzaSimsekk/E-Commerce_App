@@ -1,6 +1,6 @@
 # NOTES TO MYSELF
 
-## ---------------------------FRONTEND--------------------------
+# ---------------------------FRONTEND--------------------------
 
 ### CSS NOTES
 
@@ -109,3 +109,20 @@ Bu şekilde yıldızlar ve yorum sayısı dinamik olarak güncellenir. Yıldız 
 **“WebKit” ne?**
 WebKit, tarayıcıların web sayfalarını render (çizim) etmek için kullandığı bir render motorudur.
 Safari ve Chromium tabanlı tarayıcıların temelinde bulunur.
+
+# ---------------------------BACKEND--------------------------
+
+### DEPENDENCY NOTES
+
+- **_cors_**: to allow the frontend IP to access the backend
+- **_dotenv_**: to use environment variables
+- **_express_**: to create APIs
+- **_jsonwebtoken_**: to enable user authentication
+- **_mongoose_**: to manage database connectivity
+- **_multer_**: to store images in our cloud
+- **_cloudinary_**: our cloud
+- **_nodemon_**: to restart the backend whenever change happens
+- **_razorpay_**: to setup online payment integration
+- **_stripe_**: to setup online payment integration
+- **_validator_**: to check the data that is coming from the user is valid or not.
+- **_bcrypt_**: to encrypt the user's password and store in the database
