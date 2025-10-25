@@ -1,3 +1,11 @@
+import userModel from '../models/userModel.js';
+import validator from 'validator';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+const createToken = (id) => {
+    return jwt.sign({id},process.env.JWT_SECRET)
+};
 
 // Route for user login
 const loginUser = async (req, res) => {};
@@ -5,7 +13,44 @@ const loginUser = async (req, res) => {};
 
 // Route for user registration
 const registerUser = async (req, res) => {
-    res.json({ message: "Register API Working" });
+    try {
+        
+        const { name, email, password } = req.body;
+
+        // Check if the user already exists
+        const existingUser = await userModel.findOne({email});
+        if(existingUser){
+            return res.status(400).json({success: false , message: "User already exists"});
+        }
+        
+        // Check the validity of the strong password and email
+        if(!validator.isEmail(email)){
+            return res.status(400).json({success: false , message: "Please enter a valid email"});
+        }
+        if(password.length < 8){
+            return res.status(400).json({success: false , message: "Please enter a strong password with minimum 8 characters"});
+        }
+
+        // Hash the password
+        const salt = await bcrypt.genSalt(10); // the larger the number, the more time it takes to hash
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const newUser = new userModel({
+            name,
+            email,
+            password: hashedPassword
+        })
+
+        const user = await newUser.save();
+
+        // Token generation for authentication
+        const token = createToken(user._id);
+        res.status(201).json({success: true , message: "User registered successfully", data: {user, token}});
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({success: false , message: "User registration failed", error: error.message});
+    }
 };
 
 
