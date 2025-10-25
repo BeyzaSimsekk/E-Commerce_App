@@ -78,8 +78,13 @@ const removeProduct = async (req, res) => {
 const singleProduct = async (req, res) => {
     try {
         
+        const { productId } = req.body;
+        const product = await productModel.findById(productId);
+        res.status(200).json({success: true, message: "Product fetched successfully", data: product});
+
     } catch (error) {
-        
+        console.error("Error fetching the product:", error);
+        res.status(500).json({success: false, message: "There is no product at this id", error: error.message });
     }
 };
 
