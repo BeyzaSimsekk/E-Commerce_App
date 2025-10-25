@@ -1,4 +1,5 @@
 import {v2 as cloudinary} from 'cloudinary';
+import productModel from '../models/productModel.js';
 
 // Controller to add a new product
 const addProduct = async (req, res) => {
@@ -19,10 +20,27 @@ const addProduct = async (req, res) => {
             })
         )
 
-        console.log("----", name, description, price, category, subCategory, sizes, bestSeller);
-        console.log(imagesURL);
+        // console.log("----", name, description, price, category, subCategory, sizes, bestSeller);
+        // console.log(imagesURL);
 
-        res.status(201).json({}); //message: "Product added successfully" 
+        const productData = {
+            name,
+            description,
+            price: Number(price),
+            category,
+            subCategory,
+            bestSeller: bestSeller === "true" ? true : false,
+            sizes: JSON.parse(sizes), // we cannot send array directly in form data so we send as string and parse it here
+            image: imagesURL,
+            date: Date.now()
+        }
+
+        console.log(productData);
+
+        const product = new productModel(productData);
+        await product.save();
+
+        res.status(201).json({success: true, message: "Product added successfully", data: product});
 
     } catch (error) {
         console.error("Error adding product:", error);
