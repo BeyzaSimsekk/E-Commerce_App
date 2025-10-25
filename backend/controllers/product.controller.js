@@ -52,8 +52,12 @@ const addProduct = async (req, res) => {
 const listProducts = async (req, res) => {
     try {
         
+        const products = await productModel.find({});
+        res.status(200).json({success: true, message: "Products fetched successfully", data: products});
+
     } catch (error) {
-        
+        console.error("Error fetching products:", error);
+        res.status(500).json({success: false, message: "Error fetching products", error: error.message });      
     }
 };
 
