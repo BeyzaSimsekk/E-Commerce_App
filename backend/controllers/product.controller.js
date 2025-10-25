@@ -1,7 +1,7 @@
 import {v2 as cloudinary} from 'cloudinary';
 import productModel from '../models/productModel.js';
 
-// Controller to add a new product
+// Controller to add a new product (later auth for admin)
 const addProduct = async (req, res) => {
     try {
         
@@ -61,12 +61,16 @@ const listProducts = async (req, res) => {
     }
 };
 
-// Controller to remove a product
+// Controller to remove a product (later auth for admin)
 const removeProduct = async (req, res) => {
     try {
         
+        await productModel.findByIdAndDelete(req.body.id);
+        res.status(200).json({success: true, message: "Product removed successfully"});
+
     } catch (error) {
-        
+        console.error("Error removing product:", error);
+        res.status(500).json({success: false, message: "Error removing product", error: error.message });
     }
 };
 
