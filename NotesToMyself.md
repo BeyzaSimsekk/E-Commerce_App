@@ -128,3 +128,13 @@ Safari ve Chromium tabanlı tarayıcıların temelinde bulunur.
 - **_bcrypt_**: to encrypt the user's password and store in the database
 
 - `"type": "module",`: to enable ES6 module support ("import statements")
+
+# ---------------------------ADMIN--------------------------
+
+### DEPENDENCY NOTES
+
+- **_axios_**: to make API calls
+
+### EXTRA NOTES
+
+- vite.config.js'te admin port numarasını 5174, frontend port numarasını 5173 olarak ayarladık. Bu sayede frontend veya admin'den hangisi önce başlarsa başlasın sabit port numarasına sahip olurlar.
