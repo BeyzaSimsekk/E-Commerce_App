@@ -1,1 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap");
 @import "tailwindcss";
+
+a.active hr {
+  display: block;
+}
+
+.prata-regular {
+  font-family: "Prata", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  font-family: "Outfit";
+}
+
+body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+.glass {
+  @apply bg-gray-800/60 backdrop-blur-md border-b border-gray-700/80 shadow-md rounded-b-3xl sticky top-0 z-50;
+}
+
+.buttonAdmin1 {
+  @apply bg-gray-600 hover:bg-[#6e415e] hover:scale-102 transition ease-in-out active:bg-[#522a44] px-5 py-2 sm:px-7 sm:py-2 rounded-xl text-xs sm:text-sm cursor-pointer;
+}

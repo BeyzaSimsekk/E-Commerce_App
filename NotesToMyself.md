@@ -135,6 +135,10 @@ Safari ve Chromium tabanlı tarayıcıların temelinde bulunur.
 
 - **_axios_**: to make API calls
 
+### CSS NOTES
+
+- **_sticky top-0 z-50_** → navbar sabit kalır ve üste oturur
+
 ### EXTRA NOTES
 
 - vite.config.js'te admin port numarasını 5174, frontend port numarasını 5173 olarak ayarladık. Bu sayede frontend veya admin'den hangisi önce başlarsa başlasın sabit port numarasına sahip olurlar.
