@@ -9,6 +9,16 @@ a.active hr {
   font-family: "Outfit";
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body.home {
+  overflow: hidden; /* sadece home’da scroll olmasın */
+}
+
 body {
   @apply bg-gray-900 text-gray-100;
 }
