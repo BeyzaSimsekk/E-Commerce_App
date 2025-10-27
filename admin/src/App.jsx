@@ -10,12 +10,17 @@ import { Routes, Route } from "react-router-dom";
 import WelcomeMessage from "./components/WelcomeMessage";
 import HomeSpline from "./components/HomeSpline";
 import Login from "./components/Login";
+import { ToastContainer } from "react-toastify";
+
+export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 // 🧱 Layout bileşeni
 const Layout = () => {
   const location = useLocation();
   const isHome = location.pathname === "/"; // sadece ana sayfa
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(
+    localStorage.getItem("token") ? localStorage.getItem("token") : ""
+  );
 
   useEffect(() => {
     if (isHome) {
@@ -25,6 +30,10 @@ const Layout = () => {
     }
   }, [isHome]);
 
+  useEffect(() => {
+    localStorage.setItem("token", token);
+  }, [token]);
+
   return (
     <motion.div
       className="min-h-screen flex flex-col"
@@ -32,11 +41,12 @@ const Layout = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
+      <ToastContainer />
       {token === "" ? (
-        <Login />
+        <Login setToken={setToken} />
       ) : (
         <>
-          <Navbar />
+          <Navbar setToken={setToken} />
           <div className="flex w-full">
             <Sidebar />
 
@@ -52,9 +62,9 @@ const Layout = () => {
               {isHome && <HomeSpline />}
               <Routes>
                 <Route path="/" element={<div></div>} />
-                <Route path="/add" element={<Add />} />
-                <Route path="/list" element={<List />} />
-                <Route path="/orders" element={<Orders />} />
+                <Route path="/add" element={<Add token={token} />} />
+                <Route path="/list" element={<List token={token} />} />
+                <Route path="/orders" element={<Orders token={token} />} />
               </Routes>
             </div>
           </div>
