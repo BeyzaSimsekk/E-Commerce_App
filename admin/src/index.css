@@ -23,6 +23,10 @@ body {
   @apply bg-gray-900 text-gray-100;
 }
 
+.login-input {
+  @apply rounded w-full px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500;
+}
+
 .glass {
   @apply bg-gray-800/60 backdrop-blur-md border-b border-gray-700/80 shadow-md rounded-b-3xl sticky top-0 z-50;
 }

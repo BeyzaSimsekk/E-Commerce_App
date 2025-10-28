@@ -29,13 +29,13 @@ const Login = ({ setToken }) => {
   };
 
   return (
-    <div className="min-h-screen w-full flex gap-2 items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-950">
+    <div className="min-h-screen w-full flex gap-2 items-center justify-center bg-linear-to-br from-gray-900 via-gray-800 to-gray-950">
       <div
         className=" bg-gray-700/30 shadow-lg drop-shadow-gray-950 rounded-lg px-12 py-9 max-w-md
       backdrop-blur-md border-b-2 border-gray-600/80"
       >
         <h1 className="text-3xl text-center font-bold mb-4">ADMIN PANEL</h1>
-        <hr className=" shadow-xl shadow-gray-900 border-1 border-gray-400 mb-12" />
+        <hr className=" shadow-xl shadow-gray-900 border border-gray-400 mb-12" />
         <form onSubmit={onSubmitHandler}>
           {/* Email */}
           <div className="mb-3 min-w-72">
@@ -45,7 +45,7 @@ const Login = ({ setToken }) => {
             <input
               onChange={(e) => setEmail(e.target.value)}
               value={email}
-              className="rounded w-full px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500"
+              className="login-input"
               type="email"
               placeholder="Enter your email (your@email.com)"
               required
@@ -57,7 +57,7 @@ const Login = ({ setToken }) => {
             <input
               onChange={(e) => setPassword(e.target.value)}
               value={password}
-              className="rounded w-full px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500"
+              className="login-input"
               type="password"
               placeholder="Enter your password"
               required
