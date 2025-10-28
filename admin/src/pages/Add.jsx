@@ -43,7 +43,28 @@ const Add = ({ token }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      console.log(response.data);
+      const resetForm = () => {
+        setName("");
+        setDescription("");
+        setPrice("");
+        setCategory("Men");
+        setSubCategory("Topwear");
+        setBestSeller(false);
+        setSizes([]);
+        setImage1(false);
+        setImage2(false);
+        setImage3(false);
+        setImage4(false);
+      };
+
+      //console.log(response.data);
+      if (response.data.success) {
+        toast.success(response.data.message);
+        resetForm();
+      } else {
+        toast.error(response.data.message);
+      }
+
       //
     } catch (error) {
       console.log(error);
