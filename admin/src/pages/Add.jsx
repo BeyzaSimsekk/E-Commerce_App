@@ -5,6 +5,8 @@ import axios from "axios";
 import { backendUrl } from "../App";
 
 const Add = ({ token }) => {
+  const [loading, setLoading] = useState(false);
+
   const [image1, setImage1] = useState(false);
   const [image2, setImage2] = useState(false);
   const [image3, setImage3] = useState(false);
@@ -20,6 +22,7 @@ const Add = ({ token }) => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
       const formData = new FormData();
@@ -69,6 +72,8 @@ const Add = ({ token }) => {
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -323,9 +328,14 @@ const Add = ({ token }) => {
       <div className="w-full mt-2 mb-28">
         <button
           type="submit"
-          className="w-full max-w-[500px] py-3 mt-4 bg-pink-300 text-gray-800 rounded-lg cursor-pointer hover:bg-[#4d2164] hover:text-slate-200 hover:scale-102 transition ease-in-out duration-300 active:bg-[#3e1654] active:text-slate-100"
+          className={`w-full max-w-[500px] py-3 mt-4 rounded-lg cursor-pointer transition ease-in-out duration-300
+          ${
+            loading
+              ? "bg-gray-300 text-gray-700 cursor-not-allowed"
+              : "bg-pink-300 text-gray-800 hover:bg-[#4d2164] hover:text-slate-200 hover:scale-102 active:bg-[#3e1654] active:text-slate-100"
+          }`}
         >
-          ADD THE PRODUCT
+          {loading ? "Adding Product..." : "ADD THE PRODUCT"}
         </button>
       </div>
     </form>
