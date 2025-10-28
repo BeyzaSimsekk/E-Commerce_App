@@ -249,6 +249,8 @@ const Add = () => {
       {/* Best Seller Checkbox */}
       <div className="flex gap-2 mt-2 hover:scale-102 transition ease-in-out duration-300">
         <input
+          onChange={() => setBestSeller((prev) => !prev)}
+          checked={bestSeller}
           className="cursor-pointer w-[22px] accent-pink-400 hover:accent-none"
           type="checkbox"
           id="bestSeller"
