@@ -96,10 +96,42 @@ const Add = () => {
         <div>
           <p className="mb-2">Product Price</p>
           <input
-            className="mb-28 w-full sm:w-[120px] px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 rounded-lg"
+            className="w-full sm:w-[120px] px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 rounded-lg"
             type="number"
             placeholder="25"
           />
+        </div>
+      </div>
+
+      {/* Product Sizes */}
+      <div className="mt-2">
+        <p className="mb-2">Product Sizes</p>
+        <div className="flex gap-3">
+          <div>
+            <p className="bg-slate-700 px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300 active:bg-[#0d2957] active:text-white">
+              S
+            </p>
+          </div>
+          <div>
+            <p className="bg-slate-700 px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300 active:bg-[#0d2957] active:text-white">
+              M
+            </p>
+          </div>
+          <div>
+            <p className="bg-slate-700 px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300 active:bg-[#0d2957] active:text-white">
+              L
+            </p>
+          </div>
+          <div>
+            <p className="bg-slate-700 px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300 active:bg-[#0d2957] active:text-white">
+              XL
+            </p>
+          </div>
+          <div>
+            <p className="bg-slate-700 px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300 active:bg-[#0d2957] active:text-white">
+              XXL
+            </p>
+          </div>
         </div>
       </div>
     </form>
