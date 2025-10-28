@@ -134,6 +134,18 @@ const Add = () => {
           </div>
         </div>
       </div>
+
+      {/* Best Seller Checkbox */}
+      <div className="flex gap-2 mt-2 hover:scale-102 transition ease-in-out duration-300">
+        <input
+          className="cursor-pointer w-[22px] accent-[#8b5b5b] hover:accent-none"
+          type="checkbox"
+          id="bestSeller"
+        />
+        <label className="cursor-pointer text-lg" htmlFor="bestSeller">
+          Add to Best Seller
+        </label>
+      </div>
     </form>
   );
 };
