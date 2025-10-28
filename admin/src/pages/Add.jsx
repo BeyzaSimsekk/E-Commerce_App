@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { assets } from "../assets/assets";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { backendUrl } from "../App";
 
-const Add = () => {
+const Add = ({ token }) => {
   const [image1, setImage1] = useState(false);
   const [image2, setImage2] = useState(false);
   const [image3, setImage3] = useState(false);
@@ -15,8 +18,44 @@ const Add = () => {
   const [bestSeller, setBestSeller] = useState(false);
   const [sizes, setSizes] = useState([]);
 
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formData = new FormData();
+
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("category", category);
+      formData.append("subCategory", subCategory);
+      formData.append("bestSeller", bestSeller);
+      formData.append("sizes", JSON.stringify(sizes));
+
+      image1 && formData.append("image1", image1);
+      image2 && formData.append("image2", image2);
+      image3 && formData.append("image3", image3);
+      image4 && formData.append("image4", image4);
+
+      const response = await axios.post(
+        backendUrl + "/api/product/add",
+        formData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      console.log(response.data);
+      //
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   return (
-    <form className="flex flex-col w-full items-start gap-3 px-3">
+    <form
+      onSubmit={onSubmitHandler}
+      className="flex flex-col w-full items-start gap-3 px-3"
+    >
       {/* Upload Images */}
       <div>
         <p className="mb-2">Upload Image</p>
@@ -87,7 +126,7 @@ const Add = () => {
         <input
           onChange={(e) => setName(e.target.value)}
           value={name}
-          className="w-full max-w-[500px] rounded px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500"
+          className="w-full max-w-[500px] rounded px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 text-gray-200"
           type="text"
           placeholder="Type the product name"
           required
@@ -99,7 +138,7 @@ const Add = () => {
         <textarea
           onChange={(e) => setDescription(e.target.value)}
           value={description}
-          className="w-full max-w-[500px] rounded px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500"
+          className="w-full max-w-[500px] rounded px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 text-gray-200"
           type="text"
           placeholder="Write the product description"
           required
@@ -112,7 +151,7 @@ const Add = () => {
           <p className="mb-2">Product Category</p>
           <select
             onChange={(e) => setCategory(e.target.value)}
-            className="w-full px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 rounded-lg"
+            className="w-full px-3 py-2 border-2 border-gray-700 bg-pink-300/70 text-gray-900 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 rounded-lg "
           >
             <option value="Men">Men</option>
             <option value="Women">Women</option>
@@ -125,7 +164,7 @@ const Add = () => {
           <p className="mb-2">Sub Category</p>
           <select
             onChange={(e) => setSubCategory(e.target.value)}
-            className="w-full px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 rounded-lg"
+            className="w-full px-3 py-2 border-2 border-gray-700 bg-pink-300/70 text-gray-900 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 rounded-lg "
           >
             <option value="Topwear">Topwear</option>
             <option value="Bottomwear">Bottomwear</option>
@@ -139,7 +178,7 @@ const Add = () => {
           <input
             onChange={(e) => setPrice(e.target.value)}
             value={price}
-            className="w-full sm:w-[120px] px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 rounded-lg"
+            className="w-full sm:w-[120px] px-3 py-2 border-2 border-gray-700 outline-none focus:outline-none focus:border-2 focus:border-gray-500 hover:scale-[1.020] transition ease-in-out duration-500 rounded-lg text-gray-200"
             type="number"
             placeholder="25"
           />
@@ -162,7 +201,7 @@ const Add = () => {
               className={`${
                 sizes.includes("S")
                   ? "bg-pink-300 text-gray-800"
-                  : "bg-slate-700"
+                  : "bg-slate-700 text-gray-200"
               } px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300`}
             >
               S
@@ -181,7 +220,7 @@ const Add = () => {
               className={`${
                 sizes.includes("M")
                   ? "bg-pink-300 text-gray-800"
-                  : "bg-slate-700"
+                  : "bg-slate-700 text-gray-200"
               } px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300`}
             >
               M
@@ -200,7 +239,7 @@ const Add = () => {
               className={`${
                 sizes.includes("L")
                   ? "bg-pink-300 text-gray-800"
-                  : "bg-slate-700"
+                  : "bg-slate-700 text-gray-200"
               } px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300`}
             >
               L
@@ -219,7 +258,7 @@ const Add = () => {
               className={`${
                 sizes.includes("XL")
                   ? "bg-pink-300 text-gray-800"
-                  : "bg-slate-700"
+                  : "bg-slate-700 text-gray-200"
               } px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300`}
             >
               XL
@@ -238,7 +277,7 @@ const Add = () => {
               className={`${
                 sizes.includes("XXL")
                   ? "bg-pink-300 text-gray-800"
-                  : "bg-slate-700"
+                  : "bg-slate-700 text-gray-200"
               } px-3 py-1 rounded cursor-pointer hover:bg-slate-800 hover:scale-105 transition ease-in-out duration-300`}
             >
               XXL
@@ -247,7 +286,7 @@ const Add = () => {
         </div>
       </div>
       {/* Best Seller Checkbox */}
-      <div className="flex gap-2 mt-2 hover:scale-102 transition ease-in-out duration-300">
+      <div className="flex gap-2 mt-2 hover:scale-102 transition ease-in-out duration-300 text-gray-200">
         <input
           onChange={() => setBestSeller((prev) => !prev)}
           checked={bestSeller}
