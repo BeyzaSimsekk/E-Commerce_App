@@ -47,7 +47,6 @@ const Add = () => {
           </label>
         </div>
       </div>
-
       <hr className="w-[37%] mt-3 border border-gray-400" />
       {/* Product Name */}
       <div className="w-full mt-2">
@@ -69,7 +68,6 @@ const Add = () => {
           required
         />
       </div>
-
       {/* Category & SubCategory Selector */}
       <div className="mt-1 flex flex-col sm:flex-row gap-2 w-full sm:gap-8">
         {/* Category */}
@@ -102,7 +100,6 @@ const Add = () => {
           />
         </div>
       </div>
-
       {/* Product Sizes */}
       <div className="mt-2">
         <p className="mb-2">Product Sizes</p>
@@ -134,7 +131,6 @@ const Add = () => {
           </div>
         </div>
       </div>
-
       {/* Best Seller Checkbox */}
       <div className="flex gap-2 mt-2 hover:scale-102 transition ease-in-out duration-300">
         <input
@@ -145,6 +141,15 @@ const Add = () => {
         <label className="cursor-pointer text-lg" htmlFor="bestSeller">
           Add to Best Seller
         </label>
+      </div>
+      {/* Submit Button */}
+      <div className="w-full mt-2 mb-28">
+        <button
+          type="submit"
+          className="w-full max-w-[500px] py-3 mt-4 bg-slate-700 rounded-lg cursor-pointer hover:bg-slate-800 hover:text-slate-100 hover:scale-102 transition ease-in-out duration-300 active:bg-[#0d2957] active:text-white"
+        >
+          ADD THE PRODUCT
+        </button>
       </div>
     </form>
   );
