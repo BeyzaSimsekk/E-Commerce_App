@@ -96,7 +96,7 @@ const Product = () => {
           {/* Add to Cart Button */}
           <button
             onClick={() => addToCart(productData._id, size)}
-            className="button1"
+            className="button0"
           >
             ADD TO CART
           </button>

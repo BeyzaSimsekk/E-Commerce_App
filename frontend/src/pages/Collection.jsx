@@ -3,6 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
 import ProductItem from "../components/ProductItem";
+import { motion } from "framer-motion";
 
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
@@ -81,7 +82,7 @@ const Collection = () => {
 
   useEffect(() => {
     applyFilter();
-  }, [category, subCategory, search, showSearch]); // whenever category or subCategory changes, this function will be executed
+  }, [category, subCategory, search, showSearch, products]); // whenever category or subCategory changes, this function will be executed
 
   useEffect(() => {
     sortProduct();
@@ -199,7 +200,12 @@ const Collection = () => {
           </select>
         </div>
         {/* Map Products */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }} // ilk durumda görünmez ve biraz aşağıda
+          animate={{ opacity: 1, y: 0 }} // görünür hale gelir ve yerine kayar
+          transition={{ duration: 0.8, ease: "easeOut" }} // animasyon hızı ve tipi
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6"
+        >
           {filterProducts.map((item, index) => (
             <ProductItem
               key={index}
@@ -209,7 +215,7 @@ const Collection = () => {
               price={item.price}
             />
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -20,6 +20,10 @@ a.active hr {
   display: none;
 }
 
+.button0 {
+  @apply bg-fuchsia-950 text-fuchsia-200 mt-2 px-8 py-3 text-sm active:bg-fuchsia-900 cursor-pointer rounded-xl hover:scale-105 transition ease-in-out;
+}
+
 .button1 {
   @apply bg-fuchsia-950 text-fuchsia-200 mt-8 px-8 py-3 text-sm active:bg-fuchsia-900 cursor-pointer rounded-xl hover:scale-105 transition ease-in-out;
 }
