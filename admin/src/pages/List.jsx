@@ -29,7 +29,7 @@ const List = ({ token }) => {
   const removeProduct = async (id) => {
     try {
       const response = await axios.post(
-        backendUrl + "api/product/remove",
+        backendUrl + "/api/product/remove",
         { id },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -97,7 +97,7 @@ const List = ({ token }) => {
             <div className="flex justify-center">
               <button
                 className="text-red-500 hover:text-red-400 hover:scale-110 transition-transform duration-200 cursor-pointer"
-                onClick={() => console.log("delete", item._id)}
+                onClick={() => removeProduct(item._id)}
               >
                 <GoXCircleFill size={20} />
               </button>
