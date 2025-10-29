@@ -26,6 +26,28 @@ const List = ({ token }) => {
     }
   };
 
+  const removeProduct = async (id) => {
+    try {
+      const response = await axios.post(
+        backendUrl + "api/product/remove",
+        { id },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (response.data.success) {
+        toast.success(response.data.message);
+        await fetchList();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
   useEffect(() => {
     fetchList();
   }, []);
