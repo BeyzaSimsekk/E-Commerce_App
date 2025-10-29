@@ -50,8 +50,6 @@ const Add = ({ token }) => {
         setName("");
         setDescription("");
         setPrice("");
-        setCategory("Men");
-        setSubCategory("Topwear");
         setBestSeller(false);
         setSizes([]);
         setImage1(false);
