@@ -1,13 +1,27 @@
 import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets.js";
-import { NavLink, Link, useNavigate, useLocation } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext.jsx";
 
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
-  const { setShowSearch, getCartCount, cartAnimate } = useContext(ShopContext);
-  const navigate = useNavigate();
+  const {
+    setShowSearch,
+    getCartCount,
+    cartAnimate,
+    navigate,
+    token,
+    setToken,
+    setCartItems,
+  } = useContext(ShopContext);
   const location = useLocation();
+
+  const logout = () => {
+    navigate("/login");
+    localStorage.removeItem("token");
+    setToken("");
+    setCartItems({});
+  };
 
   const handleSearchClick = () => {
     if (!location.pathname.includes("collection")) {
@@ -69,7 +83,9 @@ const Navbar = () => {
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded-xl">
               <p className="cursor-pointer hover:text-black">My Profile</p>
               <p className="cursor-pointer hover:text-black">Orders</p>
-              <p className="cursor-pointer hover:text-black">Log Out</p>
+              <p onClick={logout} className="cursor-pointer hover:text-black">
+                Log Out
+              </p>
             </div>
           </div>
         </div>
