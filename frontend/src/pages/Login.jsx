@@ -1,12 +1,40 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
+import { ShopContext } from "../context/ShopContext";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [currentState, setCurrentState] = useState("Sign Up");
+  const { token, setToken, navigate, backendUrl } = useContext(ShopContext);
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Form doldurulup gönderildiğinde çalışacak fonksiyon (sayfa yenilenmesini engellemek için)
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+    try {
+      // registerUser api
+      if (currentState === "Sign Up") {
+        const response = await axios.post(backendUrl + "/api/user/register", {
+          name,
+          email,
+          password,
+        });
+        //console.log(response.data);
+        if (response.data.success) {
+          setToken(response.data.token);
+          localStorage.setItem("token", response.data.token);
+        } else {
+          toast.error(response.data.message);
+        }
+      }
+      // loginUser api
+      else {
+      }
+    } catch (error) {}
   };
 
   return (
@@ -32,6 +60,8 @@ const Login = () => {
           ""
         ) : (
           <input
+            onChange={(e) => setName(e.target.value)}
+            value={name}
             type="text"
             className="input-border"
             placeholder="Name"
@@ -39,12 +69,16 @@ const Login = () => {
           />
         )}
         <input
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
           type="email"
           className="input-border"
           placeholder="Email"
           required
         />
         <input
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
           type="password"
           className="input-border"
           placeholder="Password"
