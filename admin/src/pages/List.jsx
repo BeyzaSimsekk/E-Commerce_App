@@ -69,10 +69,15 @@ const List = ({ token }) => {
         {list.map((item, index) => (
           <div
             key={index}
-            className="grid grid-cols-[1fr_3fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center bg-gray-700/40 hover:bg-gray-700/60 border border-gray-600 rounded-lg py-2 px-3 text-sm transition-all duration-300"
+            className="bg-gray-700/40 hover:bg-gray-700/60 border border-gray-600 
+              rounded-lg py-3 px-3 text-sm transition-all duration-300
+              grid gap-3
+              grid-cols-1 sm:grid-cols-[auto_1fr]
+              md:grid-cols-[1fr_3fr_1fr_1fr_1fr]
+              items-center"
           >
             {/* Image */}
-            <div className="flex justify-start">
+            <div className="flex justify-center sm:justify-start">
               <img
                 src={item.image[0]}
                 alt={item.name}
@@ -80,25 +85,35 @@ const List = ({ token }) => {
               />
             </div>
 
-            {/* Name */}
-            <p className="font-medium text-gray-100 truncate">{item.name}</p>
-
-            {/* Category */}
-            <p className="hidden md:block text-gray-300">{item.category}</p>
-
-            {/* Price */}
-            <p className="hidden md:block">
-              {currency}
-              {item.price}
-            </p>
+            {/* Text Info */}
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between md:contents">
+              <p className="font-medium text-gray-100 truncate text-center md:text-left">
+                {item.name}
+              </p>
+              <p className="text-gray-300 hidden md:block md:text-left">
+                {item.category}
+              </p>
+              <p className="text-gray-300 hidden md:block md:text-left">
+                {currency}
+                {item.price}
+              </p>
+              {/* ★ mobile görünümünde alt alta */}
+              <div className="flex md:hidden flex-col mt-2 gap-1 text-gray-400 text-center">
+                <p>{item.category}</p>
+                <p>
+                  {currency}
+                  {item.price}
+                </p>
+              </div>
+            </div>
 
             {/* Delete Button */}
-            <div className="flex justify-center">
+            <div className="flex justify-center md:justify-center sm:justify-end">
               <button
                 className="text-red-500 hover:text-red-400 hover:scale-110 transition-transform duration-200 cursor-pointer"
                 onClick={() => removeProduct(item._id)}
               >
-                <GoXCircleFill size={20} />
+                <GoXCircleFill size={25} />
               </button>
             </div>
           </div>
