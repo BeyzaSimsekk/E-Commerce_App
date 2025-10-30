@@ -16,25 +16,46 @@ const Login = () => {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     try {
-      // registerUser api
       if (currentState === "Sign Up") {
-        const response = await axios.post(backendUrl + "/api/user/register", {
+        const response = await axios.post(`${backendUrl}/api/user/register`, {
           name,
           email,
           password,
         });
-        //console.log(response.data);
+
         if (response.data.success) {
-          setToken(response.data.token);
-          localStorage.setItem("token", response.data.token);
+          setToken(response.data.data.token);
+          localStorage.setItem("token", response.data.data.token);
+          toast.success("Account created successfully!");
         } else {
           toast.error(response.data.message);
         }
+      } else if (currentState === "Login") {
+        const response = await axios.post(`${backendUrl}/api/user/login`, {
+          email,
+          password,
+        });
+
+        if (response.data.success) {
+          setToken(response.data.data.token);
+          localStorage.setItem("token", response.data.data.token);
+          toast.success("Logged in successfully!");
+        } else {
+          toast.error(response.data.message);
+        }
+      } else {
+        console.error("Unknown currentState:", currentState);
+        toast.error("Something went wrong with form state");
       }
-      // loginUser api
-      else {
+    } catch (error) {
+      if (error.response) {
+        console.log("Backend error:", error.response.data);
+        toast.error(error.response.data.message || "Something went wrong");
+      } else {
+        console.log("Axios error:", error.message);
+        toast.error("Network error or server not reachable");
       }
-    } catch (error) {}
+    }
   };
 
   return (
