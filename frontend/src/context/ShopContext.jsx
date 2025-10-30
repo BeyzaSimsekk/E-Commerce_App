@@ -64,6 +64,19 @@ const ShopContextProvider = (props) => {
         fontSize: "14px",
       },
     }); // Başarı bildirimi
+
+    if (token) {
+      try {
+        await axios.post(
+          `${backendUrl}/api/cart/add`,
+          { itemId, size },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      } catch (error) {
+        console.error("Error adding to cart:", error);
+        toast.error(error.message);
+      }
+    }
   };
 
   const getCartCount = () => {
