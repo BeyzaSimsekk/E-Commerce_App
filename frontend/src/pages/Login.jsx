@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
@@ -57,6 +57,12 @@ const Login = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/");
+    }
+  }, [token]);
 
   return (
     <motion.div
