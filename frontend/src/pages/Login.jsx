@@ -24,9 +24,15 @@ const Login = () => {
         });
 
         if (response.data.success) {
-          setToken(response.data.data.token);
-          localStorage.setItem("token", response.data.data.token);
+          //setToken(response.data.data.token);
+          //localStorage.setItem("token", response.data.data.token);
           toast.success("Account created successfully!");
+
+          // Kayıt başarılı olursa formu login durumuna al
+          setCurrentState("Login");
+          setName("");
+          setEmail("");
+          setPassword("");
         } else {
           toast.error(response.data.message);
         }
