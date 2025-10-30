@@ -105,6 +105,19 @@ const ShopContextProvider = (props) => {
     // Sepete ekleme animasyonunu tetikle
     setCartAnimate(true);
     setTimeout(() => setCartAnimate(false), 400); // animasyon süresi (0.4s)
+
+    if (token) {
+      try {
+        await axios.post(
+          `${backendUrl}/api/cart/update`,
+          { itemId, size, quantity },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      } catch (error) {
+        console.error("Error updating the cart:", error);
+        toast.error(error.message);
+      }
+    }
   };
 
   /**bu getCartAmount fonksiyonuna async eklersek:
@@ -147,6 +160,25 @@ const ShopContextProvider = (props) => {
     }
   };
 
+  const getUserCart = async (token) => {
+    try {
+      const response = await axios.post(
+        `${backendUrl}/api/cart/get`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (response.data.success) {
+        setCartItems(response.data.cartData);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error(error.message);
+    }
+  };
+
   useEffect(() => {
     getProductsData();
   }, []);
@@ -154,6 +186,7 @@ const ShopContextProvider = (props) => {
   useEffect(() => {
     if (!token && localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
+      getUserCart(localStorage.getItem("token"));
     }
   }, []);
 

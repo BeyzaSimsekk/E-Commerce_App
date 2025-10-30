@@ -10,25 +10,27 @@ const Cart = () => {
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
-    const tempData = [];
+    if (products.length > 0) {
+      const tempData = [];
 
-    // item data
-    for (const items in cartItems) {
-      // quantity data
-      for (const item in cartItems[items]) {
-        if (cartItems[items][item] > 0) {
-          tempData.push({
-            _id: items,
-            size: item,
-            quantity: cartItems[items][item],
-          });
+      // item data
+      for (const items in cartItems) {
+        // quantity data
+        for (const item in cartItems[items]) {
+          if (cartItems[items][item] > 0) {
+            tempData.push({
+              _id: items,
+              size: item,
+              quantity: cartItems[items][item],
+            });
+          }
         }
       }
-    }
 
-    //console.log(tempData);
-    setCartData(tempData);
-  }, [cartItems]);
+      //console.log(tempData);
+      setCartData(tempData);
+    }
+  }, [cartItems, products]);
 
   return (
     <div className="border-t border-gray-300 pt-14">
@@ -44,12 +46,14 @@ const Cart = () => {
           );
           return (
             <div
-              onClick={() => navigate(`/product/${productData._id}`)}
               key={index}
-              className="py-3 px-3 border-t border-b rounded-3xl border-[#C586A5] text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4 mt-4 shadow-md shadow-[#dd9fbe79] cursor-pointer"
+              className="py-3 px-3 border-t border-b rounded-3xl border-[#C586A5] text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4 mt-4 shadow-md shadow-[#dd9fbe79]"
             >
               {/* Product Data */}
-              <div className="flex items-start gap-6">
+              <div
+                className="flex items-start gap-6 cursor-pointer"
+                onClick={() => navigate(`/product/${productData._id}`)}
+              >
                 <img
                   className="w-16 sm:w-20 rounded-2xl shadow-md"
                   src={productData.image[0]}
@@ -72,22 +76,21 @@ const Cart = () => {
               </div>
 
               <input
-                onChange={(e) =>
-                  e.target.value === "" || e.target.value === 0
-                    ? null
-                    : updateQuantity(
-                        item._id,
-                        item.size,
-                        Number(e.target.value)
-                      )
-                }
+                onChange={(e) => {
+                  e.stopPropagation(); // div tıklanmasını engeller
+                  if (e.target.value === "" || e.target.value === 0) return;
+                  updateQuantity(item._id, item.size, Number(e.target.value));
+                }}
                 className="border max-w-10 sm:max-w-20 px-2 sm:px-3 py-2 border-[#C586A5] bg-[#f9e1eb] rounded-xl text-base font-medium focus:outline-[#C586A5] shadow-sm"
                 type="number"
                 min={1}
                 defaultValue={item.quantity}
               />
               <img
-                onClick={() => updateQuantity(item._id, item.size, 0)}
+                onClick={(e) => {
+                  e.stopPropagation(); // div tıklamasını durdur
+                  updateQuantity(item._id, item.size, 0);
+                }}
                 className="w-4 mr-4 sm:w-5 cursor-pointer"
                 src={assets.bin_icon}
                 alt="cart bin icon"
