@@ -131,6 +131,11 @@ const ShopContextProvider = (props) => {
     for (const items in cartItems) {
       let itemInfo = products.find((product) => product._id === items);
 
+      if (!itemInfo) {
+        console.warn(`Product with id ${items} not found in products list.`);
+        continue; // ürün bulunmazsa o ID’yi atla
+      }
+
       for (const item in cartItems[items]) {
         try {
           if (cartItems[items][item] > 0) {
