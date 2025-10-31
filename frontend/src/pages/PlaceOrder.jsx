@@ -3,6 +3,7 @@ import Title from "../components/Title";
 import CartTotal from "../components/CartTotal";
 import { assets } from "../assets/assets";
 import { ShopContext } from "../context/ShopContext";
+import axios from "axios";
 
 const PlaceOrder = () => {
   const {
@@ -12,7 +13,7 @@ const PlaceOrder = () => {
     cartItems,
     setCartItems,
     getCartAmount,
-    ddelivery_fee,
+    delivery_fee,
     products,
   } = useContext(ShopContext);
   const [method, setMethod] = useState("cod");
@@ -60,8 +61,39 @@ const PlaceOrder = () => {
         }
       }
 
-      console.log(orderItems);
-    } catch (error) {}
+      // console.log(orderItems);
+      let orderData = {
+        address: formData,
+        items: orderItems,
+        amount: getCartAmount() + delivery_fee,
+      };
+
+      switch (method) {
+        // API Calls for COD
+        case "cod":
+          const response = await axios.post(
+            `${backendUrl}/api/order/place`,
+            orderData,
+            { headers: { Authorization: `Bearer ${token}` } }
+          );
+
+          console.log(response.data);
+          if (response.data.success) {
+            setCartItems({}); // Sepeti temizle
+            navigate("/orders");
+          } else {
+            toast.error(response.data.message);
+          }
+
+          break;
+
+        default:
+          break;
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
   };
 
   return (
