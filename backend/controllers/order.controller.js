@@ -77,8 +77,13 @@ const updateStatus = async (req,res) => {
 const userOrders = async (req,res) => {
     try {
         
-    } catch (error) {
+        const {userId} = req.body;
+        const orders = await orderModel.find({userId});
+        res.status(200).json({success: true, orders});
         
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({success: false, message: error.message});
     }
 }
 
