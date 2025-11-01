@@ -38,7 +38,8 @@ const placeOrderStripe = async (req,res) => {
     try {
         
     } catch (error) {
-        
+        console.log(error);
+        res.status(500).json({success: false, message: error.message});
     }
 }
 
@@ -47,7 +48,8 @@ const placeOrderRazorpay = async (req,res) => {
     try {
         
     } catch (error) {
-        
+        console.log(error);
+        res.status(500).json({success: false, message: error.message});
     }
 }
 
@@ -57,8 +59,13 @@ const placeOrderRazorpay = async (req,res) => {
 const allOrders = async (req,res) => {
     try {
         
+        // all orders from all users
+        const orders = await orderModel.find({});
+        res.status(200).json({success: true, orders});
+
     } catch (error) {
-        
+        console.log(error);
+        res.status(500).json({success: false, message: error.message});
     }
 }
 
@@ -67,7 +74,8 @@ const updateStatus = async (req,res) => {
     try {
         
     } catch (error) {
-        
+        console.log(error);
+        res.status(500).json({success: false, message: error.message});
     }
 }
 
