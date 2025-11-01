@@ -4,6 +4,7 @@ import Title from "../components/Title";
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import dayjs from "dayjs";
 
 const Orders = () => {
   const { backendUrl, token, currency } = useContext(ShopContext);
@@ -66,16 +67,23 @@ const Orders = () => {
               />
               <div>
                 <p className="sm:text-base font-medium">{item.name}</p>
-                <div className="flex items-center gap-3 mt-2 text-base text-gray-700">
-                  <p className="text-lg">
+                <div className="flex items-center gap-3 mt-1 text-base text-gray-700">
+                  <p>
                     {currency}
                     {item.price}.00
                   </p>
-                  <p>Quantity: 1</p>
-                  <p>Size: M</p>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Size: {item.size}</p>
                 </div>
-                <p className="mt-2">
-                  Date: <span className="text-gray-400">25, Jul, 2024</span>
+                <p className="mt-1">
+                  Date:{" "}
+                  <span className="text-gray-400">
+                    {dayjs(item.date).format("DD.MM.YYYY")}
+                  </span>
+                </p>
+                <p className="mt-1">
+                  Payment:{" "}
+                  <span className="text-gray-400">{item.paymentMethod}</span>
                 </p>
               </div>
             </div>
@@ -83,10 +91,12 @@ const Orders = () => {
             <div className="md:w-1/2 flex justify-between">
               <div className="flex items-center gap-2">
                 <p className="min-w-2 h-2 rounded-full bg-green-500"></p>
-                <p className="text-sm md:text-base">Ready to Ship</p>
+                <p className="text-sm md:text-base">{item.status}</p>
               </div>
               {/* Button */}
-              <button className="button2">Track Order</button>
+              <button onClick={loadOrderData} className="button2">
+                Track Order
+              </button>
             </div>
           </div>
         ))}
