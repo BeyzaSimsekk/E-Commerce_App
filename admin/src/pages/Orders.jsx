@@ -111,7 +111,10 @@ const Orders = ({ token }) => {
                 {"  "}
                 {order.amount}
               </p>
-              <select className="bg-gray-900/80 rounded-lg p-2 font-semibold">
+              <select
+                value={order.status}
+                className="bg-gray-900/80 rounded-lg p-2 font-semibold"
+              >
                 <option value="Order Placed">Order Placed</option>
                 <option value="Packing">Packing</option>
                 <option value="Shipped">Shipped</option>
