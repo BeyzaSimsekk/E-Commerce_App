@@ -142,3 +142,5 @@ Safari ve Chromium tabanlı tarayıcıların temelinde bulunur.
 ### EXTRA NOTES
 
 - vite.config.js'te admin port numarasını 5174, frontend port numarasını 5173 olarak ayarladık. Bu sayede frontend veya admin'den hangisi önce başlarsa başlasın sabit port numarasına sahip olurlar.
+
+![alt text](image.png)

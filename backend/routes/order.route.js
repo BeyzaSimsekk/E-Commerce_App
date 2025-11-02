@@ -5,17 +5,19 @@ import authUser from '../middleware/auth.js';
 
 const orderRouter = express.Router();
 
-// Admin Features
-orderRouter.post("/list",adminAuth, allOrders);
-orderRouter.post("/status",adminAuth, updateStatus);
+// User Feature
+orderRouter.post("/userorders", authUser, userOrders);
 
 // Payment Features
 orderRouter.post("/place", authUser, placeOrder);
 orderRouter.post("/stripe", authUser, placeOrderStripe);
 orderRouter.post("/razorpay", authUser, placeOrderRazorpay);
 
-// User Feature
-orderRouter.post("/userorders", authUser, userOrders);
+// Admin Features
+orderRouter.post("/list",adminAuth, allOrders);
+orderRouter.post("/status",adminAuth, updateStatus);
+
+
 
 export default orderRouter;
 

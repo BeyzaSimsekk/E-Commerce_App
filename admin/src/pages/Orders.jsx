@@ -35,6 +35,30 @@ const Orders = ({ token }) => {
     }
   };
 
+  const statusHandler = async (event, orderId) => {
+    try {
+      const response = await axios.post(
+        `${backendUrl}/api/order/status`,
+        {
+          orderId,
+          status: event.target.value,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (response.data.success) {
+        await fetchAllOrders();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+      toast.error(error.response?.data?.message || "Something went wrong");
+    }
+  };
+
   useEffect(() => {
     fetchAllOrders();
   }, [token]);
@@ -112,6 +136,7 @@ const Orders = ({ token }) => {
                 {order.amount}
               </p>
               <select
+                onChange={(event) => statusHandler(event, order._id)}
                 value={order.status}
                 className="bg-gray-900/80 rounded-lg p-2 font-semibold"
               >
