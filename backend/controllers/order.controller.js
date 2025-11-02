@@ -112,7 +112,7 @@ const verifyStripe = async (req,res) => {
             res.status(200).json({success: true, message: "Payment Successful and Order Placed"});
         } else {
             await orderModel.findByIdAndDelete(orderId);
-            res.status(400).json({success: false, message: "Payment Failed, Order Cancelled"});
+            res.status(200).json({success: false, message: "Payment Failed, Order Cancelled"});
         }
 
     } catch (error) {
