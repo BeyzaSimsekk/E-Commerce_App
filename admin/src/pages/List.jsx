@@ -53,7 +53,9 @@ const List = ({ token }) => {
 
   return (
     <div className="text-gray-200 w-full pr-6">
-      <p className="mb-3 text-lg font-semibold">All Products List</p>
+      <p className="mb-3 text-xl text-pink-300 font-semibold">
+        All Products List
+      </p>
 
       {/* Table Header */}
       <div className="hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] bg-gray-800/80 py-2 px-3 rounded-lg text-sm font-medium text-gray-300 border border-gray-700">

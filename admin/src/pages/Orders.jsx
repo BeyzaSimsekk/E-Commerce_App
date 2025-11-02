@@ -6,8 +6,6 @@ import { backendUrl, currency } from "../App";
 import { toast } from "react-toastify";
 import { assets } from "../assets/assets";
 
-// BU SAYFANIN CSS DÜZENLEMESİNDE KALDIM*********11.58.29*********
-
 const Orders = ({ token }) => {
   const [orders, setOrders] = useState([]);
 
@@ -43,33 +41,36 @@ const Orders = ({ token }) => {
 
   return (
     <div>
-      <h3 className="text-xl text-gray-200 font-medium">Order Page ⋆𐙚₊˚⊹♡</h3>
-      <div>
+      <h3 className="text-xl text-pink-300 font-semibold">Order Page ⋆𐙚₊˚⊹♡</h3>
+      <div className="pr-8">
         {orders
           .map((order, index) => (
-            <div key={index}>
+            <div
+              className="grid grid-cols-1 sm:grid-cols-[0.5fr_2fr_1fr] lg:grid-cols-[0.5fr_2fr_1fr_1fr_1fr] gap-3 items-start rounded-lg border-2 border-gray-500 p-5 md:p-8 my-3 md:my-4 text-sm sm:text-base text-gray-100 bg-gray-800/60 hover:bg-gray-700/40 transition-all duration-300"
+              key={index}
+            >
               {/* Image */}
               <img
-                className="rounded-lg opacity-70"
+                className="w-15 rounded-lg opacity-70"
                 src={assets.parcel_icon}
                 alt="admin orders"
               />
               {/* User Details */}
-              <div>
+              <div className="border-r-2 border-gray-500 mr-4 h-full">
                 <div>
                   {order.items.map((item, index) => {
                     // means item is the last item
                     if (index === order.items.length - 1) {
                       return (
-                        <p key={index}>
-                          {" "}
+                        <p className="py-0.5" key={index}>
+                          {"- "}
                           {item.name} x {item.quantity} <span>{item.size}</span>{" "}
                         </p>
                       );
                     } else {
                       return (
-                        <p key={index}>
-                          {" "}
+                        <p className="py-0.5" key={index}>
+                          {"- "}
                           {item.name} x {item.quantity} <span>{item.size}</span>{" "}
                           ,{" "}
                         </p>
@@ -78,7 +79,9 @@ const Orders = ({ token }) => {
                   })}
                 </div>
                 {/* User's name */}
-                <p>{order.address.firstName + " " + order.address.lastName}</p>
+                <p className="mt-3 mb-1 text-sm sm:text-[17px] font-medium text-pink-300">
+                  {order.address.firstName + " " + order.address.lastName}
+                </p>
                 {/* Address */}
                 <div>
                   <p>{order.address.street + ", "}</p>
@@ -95,18 +98,20 @@ const Orders = ({ token }) => {
                 <p>{order.address.phone}</p>
               </div>
               {/* Order Details */}
-              <div>
-                <p>Items : {order.items.length}</p>
-                <p>Method : {order.paymentMethod}</p>
+              <div className="border-r-2 border-gray-500 mr-4 h-full">
+                <p className="text-sm sm:text-[17px]">
+                  Items : {order.items.length}
+                </p>
+                <p className="mt-3">Method : {order.paymentMethod}</p>
                 <p>Payment : {order.payment ? "Done" : "Pending"}</p>
                 <p>Date : {new Date(order.date).toLocaleDateString()}</p>
               </div>
-              <p>
+              <p className=" text-sm sm:text-[17px] text-pink-300 border-r-2 border-gray-500 mr-4 h-full">
                 {currency}
                 {"  "}
                 {order.amount}
               </p>
-              <select>
+              <select className="bg-gray-900/80 rounded-lg p-2 font-semibold">
                 <option value="Order Placed">Order Placed</option>
                 <option value="Packing">Packing</option>
                 <option value="Shipped">Shipped</option>
