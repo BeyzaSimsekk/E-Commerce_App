@@ -1,6 +1,7 @@
 import orderModel from "../models/orderModel.js";
 import userModel from "../models/userModel.js";
 import Stripe from 'stripe';
+import Razorpay from 'razorpay';
 
 // global variables
 const currency = 'usd'; // currency for payment
@@ -8,6 +9,10 @@ const deliveryCharge = 10;
 
 // gateway initialization
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+const razorpayInstance = new Razorpay({
+    key_id: process.env.RAZORPAY_KEY_ID,
+    key_secret: process.env.RAZORPAY_KEY_SECRET,
+});
 
 // -------------------- PAYMENT FEATURES ---------------------
 
@@ -125,6 +130,35 @@ const verifyStripe = async (req,res) => {
 const placeOrderRazorpay = async (req,res) => {
     try {
         
+        const {userId, items, amount, address} = req.body; 
+
+        const orderData = {
+            userId,
+            items,
+            address,
+            amount,
+            paymentMethod: "Razorpay",
+            payment: false,
+            date: Date.now(),
+        }
+
+        const newOrder = new orderModel(orderData);
+        await newOrder.save();
+
+        const options = {
+            amount: amount * 100,  // amount in the smallest currency unit
+            currency: currency.toUpperCase(),
+            receipt: newOrder._id.toString()
+        }
+
+        await razorpayInstance.orders.create(options, (error, order) => {
+            if(error) {
+                console.log(error);
+                return res.status(500).json({success: false, message: "Something went wrong while creating Razorpay order"});
+            }
+            res.status(200).json({success:true, order});
+        })
+
     } catch (error) {
         console.log(error);
         res.status(500).json({success: false, message: error.message});
