@@ -149,7 +149,3 @@ This project was built to:
 
 - Thanks to **GreatStack** for the initial inspiration and guidance 🚀
 - Extended, customized, and developed by **[Beyza Şimşek](https://github.com/BeyzaSimsekk)** ✨
-
-```
-
-```
