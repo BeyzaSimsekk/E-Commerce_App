@@ -149,3 +149,12 @@ This project was built to:
 
 - Thanks to **GreatStack** for the initial inspiration and guidance 🚀
 - Extended, customized, and developed by **[Beyza Şimşek](https://github.com/BeyzaSimsekk)** ✨
+---
+
+## 🪄 ADMIN PAGE SCREENSHOTS
+
+<img width="1905" height="920" alt="image" src="https://github.com/user-attachments/assets/436f46e3-9241-41fe-ac67-8f787094bd20" />
+<img width="1916" height="972" alt="image" src="https://github.com/user-attachments/assets/281f0a66-e605-4c76-b547-57341e1ef0e9" />
+<img width="1911" height="923" alt="image" src="https://github.com/user-attachments/assets/caf13b62-7de8-477d-8737-7039a3b639cc" />
+<img width="1912" height="928" alt="image" src="https://github.com/user-attachments/assets/cb6e4d34-c692-4fb6-8e11-1c7b927614ca" />
+
