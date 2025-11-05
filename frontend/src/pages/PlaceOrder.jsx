@@ -48,6 +48,23 @@ const PlaceOrder = () => {
       receipt: order.receipt,
       handler: async (response) => {
         console.log(response);
+        try {
+          const { data } = await axios.post(
+            backendUrl + "/api/order/verifyRazorpay",
+            response,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+
+          if (data.success) {
+            navigate("/orders");
+            setCartItems({}); // Clear the cart
+          }
+        } catch (error) {
+          console.log(error);
+          toast.error(error.message);
+        }
       },
     };
     const rzp = new window.Razorpay(options);
