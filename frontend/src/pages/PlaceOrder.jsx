@@ -4,6 +4,7 @@ import CartTotal from "../components/CartTotal";
 import { assets } from "../assets/assets";
 import { ShopContext } from "../context/ShopContext";
 import axios from "axios";
+import { currency } from "../../../admin/src/App";
 
 const PlaceOrder = () => {
   const {
@@ -34,6 +35,23 @@ const PlaceOrder = () => {
     const value = event.target.value; // value of the input field
 
     setFormData((data) => ({ ...data, [name]: value }));
+  };
+
+  const initPay = (order) => {
+    const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID,
+      amount: order.amount,
+      currency: order.currency,
+      name: "Order Payment",
+      description: "Order Payment",
+      order_id: order.id,
+      receipt: order.receipt,
+      handler: async (response) => {
+        console.log(response);
+      },
+    };
+    const rzp = new window.Razorpay(options);
+    rzp.open();
   };
 
   /**
@@ -109,7 +127,8 @@ const PlaceOrder = () => {
           );
 
           if (responseRazorpay.data.success) {
-            console.log(responseRazorpay.data.order);
+            //console.log(responseRazorpay.data.order);
+            initPay(responseRazorpay.data.order);
           }
 
           break;
